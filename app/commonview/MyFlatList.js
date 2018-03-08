@@ -120,6 +120,7 @@ export default class MyFlatList extends React.PureComponent {
             </View>
         );
     }
+    
 }
 
 const styles = StyleSheet.create({
