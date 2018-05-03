@@ -16,7 +16,8 @@ import {scaleSize} from '../Util/ScreenUtils';
 // import {observer} from 'mobx-react/native';
 // import {observable, action, computed} from 'mobx';
 import Loading from './Loading';
-export default class MyFlatList extends React.PureComponent {
+import { connect } from 'react-redux';
+class MyFlatList extends React.PureComponent {
     // 构造
     constructor(props) {
         super(props);
@@ -24,10 +25,10 @@ export default class MyFlatList extends React.PureComponent {
         // for (let i = 0; i < 20; i++) {
         //     data.push({key: i, title: i + ''});
         // }
-        this.state = {
-            data: '',
-            isRefreshing: false,
-        };
+        // this.state = {
+        //     data: '',
+        //     isRefreshing: false,
+        // };
     }
 
     // @observable
@@ -120,7 +121,6 @@ export default class MyFlatList extends React.PureComponent {
             </View>
         );
     }
-    
 }
 
 const styles = StyleSheet.create({
@@ -137,3 +137,16 @@ const styles = StyleSheet.create({
         // height: 500,高度设置无效
     }
 });
+
+export default connect(
+    (state)=>(
+        {data:state.list}
+    ),
+    (dispatch)=>({
+        refresh:()=>{
+            dispatch()
+        }
+    })
+    )(MyFlatList);
+
+

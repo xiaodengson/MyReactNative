@@ -17,6 +17,10 @@ import MyFlatList from './commonview/MyFlatList';
 import CardCouponBase from './base/CardCouponBase';
 var {height, width} = Dimensions.get('window');
 import {scaleSize} from './Util/ScreenUtils';
+import { Provider } from 'react-redux';
+import {getCardList} from './actions/CardAction'
+import Store from './store/store';
+const store =Store();
 let list;
 export default class Home extends Component{
 
@@ -39,19 +43,21 @@ export default class Home extends Component{
             data.qrcodeUrl = 'http://m.zb25.com.cn//pay/scan/result?pid=20892327181907398656&sid=10549840601068216320&sign=74A6A960CBB9FA1F5B56A4C0976DA3B9';
             data.shopLogoUrl ="https://facebook.github.io/react/img/logo_og.png";
             list.push(data);
-    }
-
+        }
+        store.dispatch(getCardList(list));
     }
     render(){
         const {navigate} = this.props.navigation;
         return(
-            <View style={styles.container}>
-                {/*<Text style={styles.textStyle}*/}
-                      {/*onPress={()=>{navigate('Test1',{name:'哈哈哈哈哈'})}}>*/}
-                    {/*首页*/}
-                {/*</Text>*/}
-                <MyFlatList data={list} navigate={navigate}/>
-            </View>
+            <Provider store={store} >
+                <View style={styles.container}>
+                    {/*<Text style={styles.textStyle}*/}
+                          {/*onPress={()=>{navigate('Test1',{name:'哈哈哈哈哈'})}}>*/}
+                        {/*首页*/}
+                    {/*</Text>*/}
+                    <MyFlatList  navigate={navigate}/>
+                </View>
+            </Provider>
         );
     }
 

@@ -18,7 +18,9 @@
 		"react-native-refresh-list-view": "^1.0.3",
 		"react-native-swipe-cards": "^0.1.1",
 		"react-native-update": "^4.0.5",
-		"react-navigation": "^1.0.0-beta.27"
+		"react-navigation": "^1.0.0-beta.27",
+		"react-redux": "^5.0.7",
+		"redux": "^4.0.0"
 	},
 	"devDependencies": {
 		"babel-jest": "21.0.0",
